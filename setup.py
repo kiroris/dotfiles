@@ -25,7 +25,6 @@ config_destination = f'/home/{current_user}/.config/'
 #Копирование файлов zsh
 for file_name in os.listdir(zsh_source):
     source_file = os.path.join(zsh_source, file_name)
-    print(source_file)
     if os.path.isfile(source_file):
         shutil.copy(source_file, zsh_destination)
 print("The zsh config has been copied...")
@@ -51,6 +50,6 @@ for dir_name in os.listdir(config_source):
                 #если это прото файл, то он тоже удаляется
         shutil.copytree(source_dir, destination_dir)
         #ну и наконце-то он копирует все конфиги
-print("Остальные конфигурации были скопированы...")
+print("The rest of the configurations have been copied...")
 
 print("Script was executed successfully...")
