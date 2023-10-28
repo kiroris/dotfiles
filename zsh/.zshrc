@@ -185,6 +185,7 @@ alias ip='ip --color=auto'
 alias cp="cp --reflink"
 alias wet='curl wttr.in/gomel'
 alias vim='nvim'
+alias c='clear'
 
 ### Functions
 # Colorized man pages
