@@ -172,18 +172,19 @@ zstyle ':completion:*:messages' format '%F{8}■%f %F{cyan}━━━[%f%d%F{cyan
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
 # Aliases
-alias ls='eza -lahF --color=always --icons'
-alias ip='ip --color=auto'
-alias newsboat='newsboat -q'
-alias diff='diff --color=auto'
-alias qemus='qemu-system-x86_64 -enable-kvm -machine q35 -device virtio-vga-gl -cpu host -display gtk,gl=es -m 2048 -smp 4'
-alias cp="cp --reflink"
-alias vim='nvim'
-alias wet='curl wttr.in/gomel'
-alias up='sudo nixos-rebuild switch'
+  # NixOS
 alias upp='sudo nixos-rebuild switch --upgrade'
-alias bc='bluetoothctl connect'
+alias up='sudo nixos-rebuild switch'
+  # Bluetooth
 alias bd='bluetoothctl disconnect'
+alias bc='bluetoothctl connect'
+  # Utils
+alias ls='eza -lahF --color=always --icons'
+alias newsboat='newsboat -q'
+alias ip='ip --color=auto'
+alias cp="cp --reflink"
+alias wet='curl wttr.in/gomel'
+alias vim='nvim'
 
 ### Functions
 # Colorized man pages
