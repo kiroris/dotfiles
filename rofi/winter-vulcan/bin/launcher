@@ -7,4 +7,4 @@ rofi \
 	-drun-display-format "{name}" \
 	-no-drun-show-actions \
 	-terminal kitty \
-	-theme "$HOME"/.config/rofi/config/launcher.rasi
+	-theme "$HOME"/.config/rofi/winter-vulcan/config/launcher.rasi

@@ -132,7 +132,7 @@
     },
     "custom/power": {
         "format":"オフ",
-        "on-click": "sh $HOME/.config/rofi/bin/powermenu",
+        "on-click": "sh $HOME/.config/rofi/winter-vulcan/bin/powermenu",
         "on-click-right": "systemctl soft-reboot",
         "tooltip": false,
     },
