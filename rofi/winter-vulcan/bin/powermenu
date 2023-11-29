@@ -74,7 +74,7 @@ case $chosen in
         fi
         ;;
     $lock)
-        swaylock  
+        ~/.config/hypr/scripts/default/lock  
         ;;
     $suspend)
 		ans=$(rdialog &)

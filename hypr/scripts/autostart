@@ -7,6 +7,9 @@ scripts=$config/scripts
 # foot server
 foot --server --log-no-syslog --log-level=warning &
 
+# ShadowSocks
+sslocal -c /etc/shadowsocks/config.json -d & 
+
 # battery notification (for laptop)
 #$scripts/default/battery_notif &
 
