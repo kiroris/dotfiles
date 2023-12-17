@@ -5,7 +5,7 @@ config=$HOME/.config/hypr
 scripts=$config/scripts
 
 # notification daemon
-dunst -conf $HOME/.config/dunst/winter-vulcan/dunstrc &
+dunst -conf /home/kirill/.config/dunst/winter-vulcan/dunstrc &
 
 # sww
 swww init &

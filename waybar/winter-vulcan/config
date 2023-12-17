@@ -99,7 +99,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "footclient -H  htop"
+        "on-click": "footclient -H  btop"
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -107,7 +107,7 @@
         //"format-critical": "{temperatureC}°C {i"custom/ss"con}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
-        "on-click": "footclient -H  htop"
+        "on-click": "footclient -H  btop"
     },
     "bluetooth":{
         "on-click":"blueman-manager",
