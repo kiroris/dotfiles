@@ -7,27 +7,29 @@ current_user = subprocess.getoutput('whoami')
 
 # Пути для копирования
 
-#возвращает путь к файлу, где выполняется данный код.
+# Возвращает путь к файлу, где выполняется данный код.
 script_directory = os.path.dirname(os.path.abspath(__file__))
 
-#путь до конфига zsh
-zsh_source = os.path.join(script_directory, 'zsh/')
-
-#путь нзначения для файлов zsh
-zsh_destination = f'/home/{current_user}/'
-
-#возращзает путь к директории с конфигами
+# Возращзает путь к директории с конфигами
 config_source = os.path.join(script_directory, '')
 
-#путь назначения для конфигов
+# Путь назначения для конфигов
 config_destination = f'/home/{current_user}/.config/'
 
-#Копирование файлов zsh
-for file_name in os.listdir(zsh_source):
-    source_file = os.path.join(zsh_source, file_name)
-    if os.path.isfile(source_file):
-        shutil.copy(source_file, zsh_destination)
-print("The zsh config has been copied...")
+# Список директорий, которые нужно скопировать в домашнюю директорию
+home_configs = ['zsh', 'tmux']
+
+# Путь назначения для файлов, которые должны находиться в доме
+home_path = f'/home/{current_user}/'
+
+# Копирование нужных конфигов в дом
+for directory_name in home_configs:
+    source_directory = os.path.join(config_source, directory_name)
+    for file_name in os.listdir(source_directory):
+        source_file = os.path.join(source_directory, file_name)
+        if os.path.isfile(source_file):
+            shutil.copy(source_file, home_path)
+            print(f"{directory_name} has been copied to {home_path}")
 
 # Копирование остальных директорий
 for dir_name in os.listdir(config_source):
@@ -50,6 +52,6 @@ for dir_name in os.listdir(config_source):
                 #если это прото файл, то он тоже удаляется
         shutil.copytree(source_dir, destination_dir)
         #ну и наконце-то он копирует все конфиги
-print("The rest of the configurations have been copied...")
+        print(f"Config {dir_name} has been copied to {config_destination}")
 
 print("Script was executed successfully...")
