@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+folder_path="$HOME/.config/hypr/wallpapers"  # Используем $HOME вместо ~
+state_file="/dev/shm/state.txt"
+
+if [ ! -e "$state_file" ]; then
+    current_index=0
+else
+    current_index=$(cat "$state_file" 2>/dev/null)
+    if [ -z "$current_index" ]; then
+        current_index=0
+    fi
+fi
+
+files=($(ls -1 "$folder_path"))
+if [ ${#files[@]} -eq 0 ]; then
+    echo "Error: No files in $folder_path."
+    exit 1
+fi
+
+if [ $current_index -ge ${#files[@]} ]; then
+    current_index=0
+fi
+
+next_filename=${files[$current_index]}
+next_index=$(( (current_index + 1) % ${#files[@]} ))
+
+command="swww img \"$folder_path/$next_filename\" --transition-type grow --transition-duration 3 --transition-pos top"
+eval "$command"
+
+echo "$next_index" > "$state_file"
+

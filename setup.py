@@ -34,7 +34,7 @@ for dir_name in os.listdir(config_source):
 # возаращает имена всех директорий и файлов в (config_source)
     source_dir = os.path.join(config_source, dir_name)
     # создаёт полный путь до директории с конфигом(/home/kirill/dotfiles/rofi)
-    if os.path.isdir(source_dir) and dir_name not in ['zsh', 'apex-legend', '.git']:
+    if os.path.isdir(source_dir) and dir_name not in ['zsh', 'tmux', 'apex-legend', '.git']:
     # проверяет является ли (source_dir) директорией 
     # и не является ли (dir_name) одной из не нужных директорий
         destination_dir = os.path.join(config_destination, dir_name)

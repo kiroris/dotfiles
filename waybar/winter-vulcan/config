@@ -68,7 +68,7 @@
         //"format": " {:%a %d %b  %H:%M}",	//24 hour format 
         "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
         "interval": 1,
-        "on-click-right": "exec python ~/.config/hypr/scripts/wall_top.py"
+        "on-click-right": "exec ~/.config/hypr/scripts/wallpaper_scripts/wall-top"
     },
 
 
