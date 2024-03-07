@@ -1,0 +1,10 @@
+#! /bin/bash
+# /usr/bin/env bash
+
+swayidle -w \
+    timeout 5 "hyprctl dispatch dpms off" \
+    resume 'hyprctl dispatch dpms on' &
+
+swaylock --config $HOME/.config/swaylock/winter-vulcan/config 
+
+kill %%

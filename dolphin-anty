@@ -1,0 +1,17 @@
+#! /bin/bash
+
+# Dolphin{anty}
+
+# Download AppImage
+(mkdir -p $HOME/.local/bin)
+(curl -o $HOME/.local/bin/dolphin-anty.AppImage -O https://app.dolphin-anty-ru.online/anty-app/dolphin-anty-linux-x86_64-latest.AppImage)
+
+# Copying an Icon
+(mkdir -p $HOME/.local/share/icons)
+(cp icons/dolphin-anty.svg $HOME/.local/share/icons/dolphin-anty.svg)
+
+# Create Desktop File
+touch $HOME/.local/share/applications/dolphin-anty.desktop
+echo -e "[Desktop Entry]\nName=Dolphin{anty}\nGenericName=Universal anti-detection browser for traffic arbitration\nComment=Universal anti-detection browser for traffic arbitration\nCategories=Browser;Internet;\nExec=$HOME/.local/bin/dolphin-anty.AppImage\nIcon=$HOME/.local/share/icons/dolphin-anty.svg\nKeywords=browser;internet;anty-detect;dolphin;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/dolphin-anty.desktop
+
+

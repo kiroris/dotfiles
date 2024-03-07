@@ -1,0 +1,140 @@
+{
+    "layer": "top",
+    "position": "top", 
+    "height": 30,
+    "margin": "0 0 0 0",
+    //"spacing": 4, // Размер промежутков между различными модулями
+    //Modules
+    "modules-left": ["hyprland/workspaces","custom/separator","mpris"],
+    "modules-center": ["clock",],
+    "modules-right": ["tray","pulseaudio","temperature","cpu","bluetooth","network","custom/power"],
+    // Modules configuration
+    
+
+    //left
+    "custom/launcher": {
+        "format":"   ⋏",
+        "on-click": "exec wofi --show drun -o",
+        "tooltip": false,
+        //"exec": "~/.config/hypr/scripts/tools/expand wall",
+        // "interval": 1,
+        "on-click-right": "~/.config/hypr/scripts/tools/expand cycle"
+    },
+    "hyprland/workspaces": {
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10":"十",
+      "urgent": "",
+      }
+    },
+
+    "custom/separator": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+     "mpris":{
+        //"format":"{player} ({status}) {dynamic}",
+        "format": " {dynamic}",
+        "dynamic-order": ["title", "artist"],
+        "dynamic-len": 35
+	  },
+
+
+
+
+
+
+    
+    
+    
+
+    //center
+    "clock": {
+        "tooltip-format": "{:%A %B %d %Y | %H:%M}",
+        "format": "  {:%a %d %b  %I:%M %p}",	//12 hour format 
+        //"format": " {:%a %d %b  %H:%M}",	//24 hour format 
+        "format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
+        "interval": 1,
+        "on-click-right": "exec ~/.config/hypr/scripts/wallpaper_scripts/wall-top"
+    },
+
+
+
+
+
+    //right
+    "pulseaudio": {
+      "on-click-middle": "pavucontrol",
+      "on-click-right": "exec wpctl set-mute @DEFAULT_SOURCE@ toggle",
+      "on-click": "exec wpctl set-mute @DEFAULT_SINK@ toggle",
+      // "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}% {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "🎧",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      }
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "on-click": "footclient -H  btop"
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        //"format-critical": "{temperatureC}°C {i"custom/ss"con}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""],
+        "on-click": "footclient -H  btop"
+    },
+    "bluetooth":{
+        "on-click":"blueman-manager",
+        "format": " {status}",
+    },
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "network": {
+        "format": "{icon}",
+        "format-alt": "{ipaddr}/{cidr} {icon}",
+        "format-alt-click": "click-right",
+        "format-wifi": "{icon} {essid}",
+        "format-icons": {
+            "wifi": ["睊", "直" ,""],
+            "ethernet": [" "],
+            "disconnected": ["⚠ Disabled"]
+        },
+        "on-click": "footclient systemctl status NetworkManager",
+        "tooltip-format": "{ifname}: {ipaddr}",
+    },
+    "custom/power": {
+        "format":"オフ",
+        "on-click": "sh $HOME/.config/rofi/winter-vulcan/bin/powermenu",
+        "on-click-right": "systemctl soft-reboot",
+        "tooltip": false,
+    },
+
+}

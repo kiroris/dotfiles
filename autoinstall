@@ -1,0 +1,110 @@
+#! /bin/bash
+# /usr/bin/env zsh
+
+check_configuration() {
+  case $HOST in
+    Wisteria)
+      return 1
+      ;;
+    Lycoris)
+      return 2
+      ;;
+    *)
+      return 0
+      ;;
+  esac
+}
+
+confirm_configuration() {
+  local ANSWER
+  echo -n "Install configuration $HOST [Y/n]: "
+  read ANSWER
+  case $ANSWER in
+    [Yy]*)
+      return 1
+      ;;
+    [Nn]*)
+      return 0 
+      ;;
+    "")
+      return 1
+      ;;
+    *)
+      return 0
+      ;;
+  esac
+}
+
+select_configuration() {
+  local ANSWER
+  while true; do
+    echo "1) Wisteria(Desktop)"
+    echo "2) Lycoris(Laptop)"
+    echo -n "Select the configuration: "
+    read ANSWER
+    case $ANSWER in
+      1)
+        return 1
+        ;;
+      2)
+        return 2
+        ;;
+      *)
+        echo "Incorrect choice. Try again."
+        ;;
+    esac
+  done
+}
+
+handle_configuration() {
+  case $1 in
+    1)
+      ./Wisteria
+      ;;
+    2)
+      ./Lycoris
+      ;;
+    *)
+      echo "Incorrect configuration choice."
+      ;;
+  esac
+}
+
+#HOST='Wisteria'
+#HOST='Lycoris'
+
+check_configuration
+# Проверка наличия конфигурации для указанного хоста
+case $? in
+  1)
+    confirm_configuration
+    case $? in
+      1)
+        handle_configuration 1  # Выполняется для Wisteria
+        ;;
+      0)
+        select_configuration
+        handle_configuration $?
+        ;;
+    esac
+    ;;
+  2)
+    confirm_configuration
+    case $? in
+      1)
+        handle_configuration 2  # Выполняется для Lycoris
+        ;;
+      0)
+        select_configuration
+        handle_configuration $?
+        ;;
+    esac
+    ;;
+  0)
+    select_configuration
+    handle_configuration $?  # Выполняется для любого другого хоста
+    ;;
+  *)
+    echo "Unknown configuration for host $HOST."
+    ;;
+esac

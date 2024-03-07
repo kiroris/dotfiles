@@ -1,0 +1,11 @@
+#! /bin/bash
+# /usr/bin/env bash
+
+lockcmd="swaylock --config $HOME/.config/swaylock/winter-vulcan/config"
+
+screenOff="sleep 5; hyprctl dispatch dpms off"
+screenOn="hyprctl dispatch dpms on"
+
+swayidle -w \
+  timeout 1800 "$lockcmd & $screenOff" \
+    resume "$screenOn"
