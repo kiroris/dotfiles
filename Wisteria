@@ -9,7 +9,7 @@ sudo dnf install -y $(cat packages)
 config_directories=("cava" "dunst" "foot" "gtk-3.0" "hypr" "icons" "imv" "lf" "mpv" "neofetch" "rofi" "swaylock" "tmux" "waybar")
 
 # Список директорий для копирования в домашнюю директорию
-home_directories=("dir1" "dir2" "dir3")
+home_directories=("zsh")
 
 # Целевая директория .config
 config_dir="$HOME/.config"
@@ -28,6 +28,8 @@ for dir in "${config_directories[@]}"; do
 done
 
 # Цикл для копирования содержимого директорий в домашнюю директорию
+# Цикл для копирования содержимого директорий в домашнюю директорию
 for dir in "${home_directories[@]}"; do
-    cp -rf $dir/* $HOME/.  # Копирование содержимого директории в домашнюю директорию
+    rsync -a "$dir/" "$HOME/"  # Копирование содержимого директории в домашнюю директорию
 done
+
