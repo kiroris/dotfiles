@@ -1,0 +1,39 @@
+#! /bin/bash
+
+# AdsPower
+
+if [ "$#" -eq 0 ]; then
+  echo "Error: specify the path to the App Image file"
+  echo "Usage: $0 <path to the App Image file>"
+  exit 1
+fi
+
+filename="$1"
+
+# Check if the specified file exists
+if [ ! -f "$filename" ]; then
+  echo "Error: file $filename don't exist"
+  exit 1
+fi
+
+# Checking if the file is an App Image
+if ! file "$filename" | grep -q "AppImage"; then
+  echo "Error: file $filename not an AppImage"
+  exit 1
+fi
+
+# Get only the file name without the full path
+appimage_name=$(basename "$filename")
+
+# Moving the file to $HOME/.local/bin with a name change
+(mkdir -p $HOME/.local/bin)
+destination="$HOME/.local/bin/ads-power.AppImage"
+mv "$filename" "$destination"
+
+# Copying an Icon
+(mkdir -p $HOME/.local/share/icons)
+(cp icons/ads-power.png $HOME/.local/share/icons/ads-power.png)
+
+# Create Desktop File
+touch $HOME/.local/share/applications/vision.desktop
+echo -e "[Desktop Entry]\nName=AdsPower\nGenericName=Anti-detection browser\nComment=Anti-detection browser\nCategories=Browser;Internet;\nExec=$HOME/.local/bin/ads-power.AppImage\nIcon=$HOME/.local/share/icons/ads-power.png\nKeywords=browser;internet;anti-detect;vision;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/ads-power.desktop
