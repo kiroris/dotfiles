@@ -1,6 +1,6 @@
-#! /usr/bin/env zsh
-#/bin/bash
+#! /bin/bash
 
+# Vision
 
 if [ "$#" -eq 0 ]; then
   echo "Error: specify the path to the App Image file"
@@ -10,29 +10,30 @@ fi
 
 filename="$1"
 
-# Проверяем, существует ли указанный файл
+# Check if the specified file exists
 if [ ! -f "$filename" ]; then
   echo "Error: file $filename don't exist"
   exit 1
 fi
 
-# Проверяем, является ли файл AppImage
+# Checking if the file is an App Image
 if ! file "$filename" | grep -q "AppImage"; then
   echo "Error: file $filename not an AppImage"
   exit 1
 fi
 
-# Получаем только имя файла без полного пути
+# Get only the file name without the full path
 appimage_name=$(basename "$filename")
 
-# Перемещаем файл в $HOME/.local/bin с изменением имени
+# Moving the file to $HOME/.local/bin with a name change
+(mkdir -p $HOME/.local/bin)
 destination="$HOME/.local/bin/vision.AppImage"
 mv "$filename" "$destination"
-
 
 # Copying an Icon
 (mkdir -p $HOME/.local/share/icons)
 (cp icons/vision.png $HOME/.local/share/icons/vision.png)
 
+# Create Desktop File
 touch $HOME/.local/share/applications/vision.desktop
-echo -e "[Desktop Entry]\nName=Vision\nGenericName=Vision - anti-detection browser for traffic arbitration\nComment=Anti-detection browser for traffic arbitration\nCategories=Browser;Internet;\nExec=$HOME/.local/bin/vision.AppImage\nIcon=$HOME/.local/share/icons/vision.png\nKeywords=browser;internet;anty-detect;vision;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/vision.desktop
+echo -e "[Desktop Entry]\nName=Vision\nGenericName=Vision - anti-detection browser for traffic arbitration\nComment=Anti-detection browser for traffic arbitration\nCategories=Browser;Internet;\nExec=$HOME/.local/bin/vision.AppImage\nIcon=$HOME/.local/share/icons/vision.png\nKeywords=browser;internet;anti-detect;vision;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/vision.desktop
