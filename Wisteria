@@ -2,4 +2,25 @@
 
 echo Wisteria
 
-#sudo dnf install -y < packages
+# Установка пакетов из файла
+sudo dnf install -y $(cat packages)
+
+# Список директорий для копирования
+directories=("cava" "foot" "lf")
+
+# Целевая директория .config
+config_dir="$HOME/.config"
+
+# Цикл для копирования содержимого в .config
+for dir in "${directories[@]}"; do
+    target_dir="$config_dir/$dir"
+    
+    # Проверка существования целевой директории
+    if [ ! -d "$target_dir" ]; then
+        mkdir -p "$target_dir"
+    fi
+    
+    # Копирование содержимого с перезаписью файлов
+    cp -rf "$dir"/* "$target_dir/"
+done
+
