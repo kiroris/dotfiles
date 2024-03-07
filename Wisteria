@@ -16,11 +16,11 @@ for dir in "${directories[@]}"; do
     target_dir="$config_dir/$dir"
     
     # Проверка существования целевой директории
-    if [ ! -d "$target_dir" ]; then
-        mkdir -p "$target_dir"
+    if [ -d "$target_dir" ]; then
+        rm -rf "$target_dir"  # Удаление существующей директории
     fi
     
-    # Копирование содержимого с перезаписью файлов
-    cp -rf "$dir"/* "$target_dir/"
+    mkdir -p "$target_dir"  # Создание новой директории
+    cp -rf "$dir"/* "$target_dir/"  # Копирование содержимого
 done
 
