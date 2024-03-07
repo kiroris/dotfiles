@@ -5,14 +5,17 @@ echo Wisteria
 # Установка пакетов из файла
 sudo dnf install -y $(cat packages)
 
-# Список директорий для копирования
-directories=("cava" "foot" "lf")
+# Список директорий для копирования в .config
+config_directories=("cava" "dunst" "foot" "gtk-3.0" "hypr" "icons" "imv" "lf" "mpv" "neofetch" "rofi" "swaylock" "tmux" "waybar")
+
+# Список директорий для копирования в домашнюю директорию
+home_directories=("dir1" "dir2" "dir3")
 
 # Целевая директория .config
 config_dir="$HOME/.config"
 
 # Цикл для копирования содержимого в .config
-for dir in "${directories[@]}"; do
+for dir in "${config_directories[@]}"; do
     target_dir="$config_dir/$dir"
     
     # Проверка существования целевой директории
@@ -24,3 +27,7 @@ for dir in "${directories[@]}"; do
     cp -rf "$dir"/* "$target_dir/"  # Копирование содержимого
 done
 
+# Цикл для копирования содержимого директорий в домашнюю директорию
+for dir in "${home_directories[@]}"; do
+    cp -rf "$dir"/* "$HOME/"  # Копирование содержимого директории в домашнюю директорию
+done
