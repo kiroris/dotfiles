@@ -31,3 +31,9 @@ done
 for dir in "${home_directories[@]}"; do
     cp -r $dir/. $HOME/.  # Копирование содержимого директории в домашнюю директорию
 done
+
+# Download wallpapers
+git clone https://github.com/kiroris/wallpapers.git $HOME/.config/hypr
+
+# Install NvChad 
+#git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim

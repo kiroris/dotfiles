@@ -59,10 +59,10 @@ select_configuration() {
 handle_configuration() {
   case $1 in
     1)
-      ./Wisteria
+      .HOSTS/Wisteria
       ;;
     2)
-      ./Lycoris
+      .HOSTS/Lycoris
       ;;
     *)
       echo "Incorrect configuration choice."
