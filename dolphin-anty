@@ -12,6 +12,6 @@
 
 # Create Desktop File
 touch $HOME/.local/share/applications/dolphin-anty.desktop
-echo -e "[Desktop Entry]\nName=Dolphin{anty}\nGenericName=Universal anti-detection browser for traffic arbitration\nComment=Universal anti-detection browser for traffic arbitration\nCategories=Browser;Internet;\nExec=$HOME/.local/bin/dolphin-anty.AppImage\nIcon=$HOME/.local/share/icons/dolphin-anty.svg\nKeywords=browser;internet;anti-detect;dolphin;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/dolphin-anty.desktop
+echo -e "[Desktop Entry]\nName=Dolphin{anty}\nGenericName=Universal anti-detection browser for traffic arbitration\nComment=Universal anti-detection browser for traffic arbitration\nCategories=Browser;Internet;\nExec=appimage-run $HOME/.local/bin/dolphin-anty.AppImage\nIcon=$HOME/.local/share/icons/dolphin-anty.svg\nKeywords=browser;internet;anti-detect;dolphin;\nNoDisplay=false\nTerminal=false" > $HOME/.local/share/applications/dolphin-anty.desktop
 
 
